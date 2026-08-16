@@ -1,0 +1,247 @@
+/* =====================================================================
+   Gedem Trading PLC — Admin Backend Design System
+   Kept deliberately separate from the public site's style.css.
+   ===================================================================== */
+
+:root{
+    --admin-sidebar: #153A26;
+    --admin-sidebar-active: #1F4D33;
+    --admin-bg: #F7F5EE;
+    --admin-card: #FFFFFF;
+    --admin-ink: #15201A;
+    --admin-ink-soft: #4B5346;
+    --admin-gray: #767966;
+    --admin-line: #DEDAC9;
+    --admin-lime: #D8F24C;
+    --admin-lime-dark: #C3DB3A;
+    --admin-danger: #C0392B;
+    --admin-danger-bg: #FBEAE8;
+    --admin-success: #2E7D46;
+    --admin-success-bg: #E7F3EA;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body.admin-body{
+    font-family:'Inter',sans-serif;
+    background:var(--admin-bg);
+    color:var(--admin-ink);
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.admin-sidebar{
+    width:240px;
+    flex-shrink:0;
+    background:var(--admin-sidebar);
+    color:#dfe6de;
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    top:0;left:0;bottom:0;
+}
+.admin-sidebar .brand{
+    display:flex;align-items:center;gap:10px;
+    padding:22px 20px;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:#fff;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.admin-sidebar .brand .mark{
+    width:32px;height:32px;border-radius:8px;background:var(--admin-lime);
+    color:var(--admin-sidebar);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;flex-shrink:0;
+}
+.admin-nav{list-style:none;padding:16px 12px;flex:1;}
+.admin-nav li{margin-bottom:2px;}
+.admin-nav a{
+    display:flex;align-items:center;gap:12px;
+    padding:11px 14px;border-radius:8px;
+    color:#c3cec1;font-size:14px;font-weight:500;
+    text-decoration:none;transition:background .15s,color .15s;
+}
+.admin-nav a i{width:18px;text-align:center;opacity:.85;}
+.admin-nav a:hover{background:rgba(255,255,255,0.06);color:#fff;}
+.admin-nav a.active{background:var(--admin-sidebar-active);color:#fff;}
+.admin-nav .nav-section-label{
+    font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    color:#7b8a78;padding:16px 14px 6px;
+}
+.admin-sidebar .sidebar-foot{
+    padding:16px 20px;border-top:1px solid rgba(255,255,255,0.08);
+    font-size:12px;color:#7b8a78;
+}
+
+/* ===== MAIN AREA ===== */
+.admin-main{margin-left:240px;flex:1;min-width:0;}
+.admin-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;background:var(--admin-card);
+    border-bottom:1px solid var(--admin-line);
+    position:sticky;top:0;z-index:10;
+}
+.admin-topbar h1{font-family:'Archivo',sans-serif;font-size:20px;font-weight:600;}
+.admin-topbar .breadcrumb{font-size:12.5px;color:var(--admin-gray);margin-top:2px;}
+.admin-user-menu{display:flex;align-items:center;gap:12px;}
+.admin-user-menu .avatar{
+    width:36px;height:36px;border-radius:50%;background:var(--admin-lime);
+    color:var(--admin-sidebar);display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:14px;
+}
+.admin-user-menu .who{font-size:13px;line-height:1.3;}
+.admin-user-menu .who .role{font-size:11px;color:var(--admin-gray);text-transform:capitalize;}
+.admin-user-menu .logout-btn{
+    font-size:12.5px;color:var(--admin-gray);border:1px solid var(--admin-line);
+    border-radius:8px;padding:7px 12px;text-decoration:none;transition:.15s;
+}
+.admin-user-menu .logout-btn:hover{border-color:var(--admin-danger);color:var(--admin-danger);}
+
+.admin-content{padding:28px 32px;}
+
+/* ===== FLASH MESSAGES (shared shape with the public contact form) ===== */
+.form-message{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    border-radius:8px;padding:13px 16px;margin-bottom:20px;font-size:14px;
+}
+.form-message.success{background:var(--admin-success-bg);color:var(--admin-success);}
+.form-message.error{background:var(--admin-danger-bg);color:var(--admin-danger);}
+.form-message .dismiss-btn{
+    background:none;border:none;font-size:16px;line-height:1;cursor:pointer;color:inherit;opacity:.6;
+}
+.form-message .dismiss-btn:hover{opacity:1;}
+
+/* ===== CARD ===== */
+.admin-card{
+    background:var(--admin-card);border:1px solid var(--admin-line);
+    border-radius:12px;overflow:hidden;
+}
+.admin-card-head{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:18px 22px;border-bottom:1px solid var(--admin-line);flex-wrap:wrap;
+}
+.admin-card-head h2{font-family:'Archivo',sans-serif;font-size:16px;font-weight:600;}
+.admin-search{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--admin-line);border-radius:8px;padding:8px 12px;
+    background:var(--admin-bg);min-width:220px;
+}
+.admin-search input{border:none;background:none;outline:none;font-size:13.5px;flex:1;}
+
+/* ===== BUTTONS ===== */
+.abtn{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:10px 18px;border-radius:8px;font-size:13.5px;font-weight:600;
+    border:1px solid transparent;cursor:pointer;text-decoration:none;transition:.15s;
+    white-space:nowrap;
+}
+.abtn-lime{background:var(--admin-lime);color:var(--admin-sidebar);}
+.abtn-lime:hover{background:var(--admin-lime-dark);}
+.abtn-ghost{background:transparent;color:var(--admin-ink-soft);border-color:var(--admin-line);}
+.abtn-ghost:hover{border-color:var(--admin-ink);color:var(--admin-ink);}
+.abtn-danger{background:transparent;color:var(--admin-danger);border-color:var(--admin-danger-bg);}
+.abtn-danger:hover{background:var(--admin-danger-bg);}
+.abtn-icon{
+    width:34px;height:34px;padding:0;border-radius:8px;justify-content:center;
+    background:transparent;border:1px solid var(--admin-line);color:var(--admin-ink-soft);
+}
+.abtn-icon:hover{border-color:var(--admin-ink);color:var(--admin-ink);}
+.abtn-icon.danger:hover{border-color:var(--admin-danger);color:var(--admin-danger);background:var(--admin-danger-bg);}
+
+/* ===== TABLE ===== */
+.admin-table{width:100%;border-collapse:collapse;font-size:14px;}
+.admin-table th{
+    text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--admin-gray);padding:12px 22px;border-bottom:1px solid var(--admin-line);
+    font-weight:600;
+}
+.admin-table td{padding:14px 22px;border-bottom:1px solid var(--admin-line);vertical-align:middle;}
+.admin-table tr:last-child td{border-bottom:none;}
+.admin-table tr:hover td{background:#fbfaf5;}
+.admin-table .actions{display:flex;gap:6px;justify-content:flex-end;}
+.admin-table .row-title{font-weight:600;}
+.admin-table .row-sub{font-size:12.5px;color:var(--admin-gray);margin-top:2px;}
+
+.pill{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:100px;
+}
+.pill-active{background:var(--admin-success-bg);color:var(--admin-success);}
+.pill-inactive{background:#efece0;color:var(--admin-gray);}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+.empty-state{padding:60px 20px;text-align:center;color:var(--admin-gray);}
+.empty-state .icon{font-size:32px;margin-bottom:10px;opacity:.5;}
+
+/* ===== FORMS ===== */
+/* Deliberately NOT sticky: position:sticky here interacted badly with the
+   sticky topbar above it and rendered ~73px too low, overlapping the first
+   form field. A regular in-flow header is more predictable — the Save
+   button just requires a normal scroll on long forms, which is fine. */
+.admin-form-body{padding:24px 22px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.form-grid .full{grid-column:1/-1;}
+.f-group{display:flex;flex-direction:column;gap:6px;}
+.f-group label{font-size:12.5px;font-weight:600;color:var(--admin-ink-soft);}
+.f-group .hint{font-size:11.5px;color:var(--admin-gray);font-weight:400;}
+.f-group input[type=text],
+.f-group input[type=number],
+.f-group input[type=email],
+.f-group input[type=password],
+.f-group select,
+.f-group textarea{
+    border:1px solid var(--admin-line);border-radius:8px;padding:11px 13px;
+    font-size:14px;font-family:'Inter',sans-serif;background:var(--admin-bg);
+}
+.f-group textarea{resize:vertical;min-height:90px;}
+.f-group input:focus, .f-group select:focus, .f-group textarea:focus{
+    outline:2px solid var(--admin-sidebar-active);outline-offset:1px;
+}
+.f-error{font-size:12px;color:var(--admin-danger);}
+.f-group.has-error input, .f-group.has-error textarea{border-color:var(--admin-danger);}
+
+.check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;}
+
+/* Repeatable rows (feature list) */
+.repeat-list{display:flex;flex-direction:column;gap:8px;}
+.repeat-row{display:flex;gap:8px;align-items:center;}
+.repeat-row input{flex:1;}
+.repeat-row .remove-row{
+    width:34px;height:34px;flex-shrink:0;border-radius:8px;border:1px solid var(--admin-line);
+    background:none;color:var(--admin-gray);cursor:pointer;font-size:15px;
+}
+.repeat-row .remove-row:hover{border-color:var(--admin-danger);color:var(--admin-danger);}
+.add-row-btn{
+    align-self:flex-start;font-size:13px;font-weight:600;color:var(--admin-sidebar-active);
+    background:none;border:none;cursor:pointer;padding:6px 0;
+}
+
+/* ===== LOGIN PAGE ===== */
+body.admin-login-body{
+    font-family:'Inter',sans-serif;background:var(--admin-sidebar);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:20px;
+}
+.login-card{
+    width:100%;max-width:380px;background:var(--admin-card);border-radius:14px;
+    padding:36px 32px;
+}
+.login-card .brand{
+    display:flex;align-items:center;gap:10px;margin-bottom:26px;
+}
+.login-card .brand .mark{
+    width:38px;height:38px;border-radius:9px;background:var(--admin-sidebar);
+    color:var(--admin-lime);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:15px;
+}
+.login-card .brand span{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;}
+.login-card h1{font-size:20px;margin-bottom:6px;}
+.login-card .sub{font-size:13.5px;color:var(--admin-gray);margin-bottom:24px;}
+.login-card form{display:flex;flex-direction:column;gap:16px;}
+.login-card .abtn-lime{width:100%;justify-content:center;padding:12px;margin-top:4px;}
+
+@media(max-width:900px){
+    .admin-sidebar{transform:translateX(-100%);transition:transform .2s;}
+    .admin-sidebar.open{transform:translateX(0);}
+    .admin-main{margin-left:0;}
+    .form-grid{grid-template-columns:1fr;}
+}
