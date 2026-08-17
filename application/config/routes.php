@@ -7,6 +7,8 @@ $route['default_controller'] = 'auth/index';
 // ==================== AUTHENTICATION ====================
 $route['login']   = 'auth/login';
 $route['logout']  = 'auth/logout';
+$route['profile'] = 'adminprofile/index';
+$route['profile/change_password'] = 'adminprofile/change_password';
 $route['admin']         = 'auth/index';
 
 // ==================== DASHBOARD ====================

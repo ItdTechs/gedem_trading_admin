@@ -20,26 +20,31 @@
 
     <aside class="admin-sidebar" id="adminSidebar">
         <div class="brand">
-            <span class="mark">GT</span>
-            Gedem Admin
+            <div class="brand-main">
+                <span class="mark">GT</span>
+                <span class="brand-text">Gedem Admin</span>
+            </div>
+            <button type="button" class="sidebar-collapse-btn" id="sidebarCollapse" aria-label="Collapse sidebar">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
         </div>
         <ul class="admin-nav">
-            <li><a href="<?= base_url('dashboard') ?>" class="<?= ($active_nav ?? '') === 'dashboard' ? 'active' : '' ?>"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+            <li><a href="<?= base_url('dashboard') ?>" class="<?= ($active_nav ?? '') === 'dashboard' ? 'active' : '' ?>"><i class="fa-solid fa-gauge"></i> <span class="nav-label">Dashboard</span></a></li>
 
             <li class="nav-section-label">Content</li>
-            <li><a href="<?= base_url('content') ?>" class="<?= ($active_nav ?? '') === 'content_cards' ? 'active' : '' ?>"><i class="fa-solid fa-note-sticky"></i> Content Cards</a></li>
-            <li><a href="<?= base_url('products') ?>" class="<?= ($active_nav ?? '') === 'products' ? 'active' : '' ?>"><i class="fa-solid fa-layer-group"></i> Products</a></li>
-            <li><a href="<?= base_url('services') ?>" class="<?= ($active_nav ?? '') === 'services' ? 'active' : '' ?>"><i class="fa-solid fa-hand-holding-droplet"></i> Services</a></li>
-            <li><a href="<?= base_url('process-steps') ?>" class="<?= ($active_nav ?? '') === 'process_steps' ? 'active' : '' ?>"><i class="fa-solid fa-list-ol"></i> Process Steps</a></li>
-            <li><a href="<?= base_url('testimonials') ?>" class="<?= ($active_nav ?? '') === 'testimonials' ? 'active' : '' ?>"><i class="fa-solid fa-quote-left"></i> Testimonials</a></li>
-            <li><a href="<?= base_url('spotlight-slides') ?>" class="<?= ($active_nav ?? '') === 'spotlight_slides' ? 'active' : '' ?>"><i class="fa-solid fa-star"></i> Spotlight Slides</a></li>
-            <li><a href="<?= base_url('page-heroes') ?>" class="<?= ($active_nav ?? '') === 'page_heroes' ? 'active' : '' ?>"><i class="fa-solid fa-image"></i> Page Heroes</a></li>
-            <li><a href="<?= base_url('org-chart') ?>" class="<?= ($active_nav ?? '') === 'org_chart' ? 'active' : '' ?>"><i class="fa-solid fa-sitemap"></i> Org Chart</a></li>
+            <li><a href="<?= base_url('content') ?>" class="<?= ($active_nav ?? '') === 'content_cards' ? 'active' : '' ?>"><i class="fa-solid fa-note-sticky"></i> <span class="nav-label">Content Cards</span></a></li>
+            <li><a href="<?= base_url('products') ?>" class="<?= ($active_nav ?? '') === 'products' ? 'active' : '' ?>"><i class="fa-solid fa-layer-group"></i> <span class="nav-label">Products</span></a></li>
+            <li><a href="<?= base_url('services') ?>" class="<?= ($active_nav ?? '') === 'services' ? 'active' : '' ?>"><i class="fa-solid fa-hand-holding-droplet"></i> <span class="nav-label">Services</span></a></li>
+            <li><a href="<?= base_url('process-steps') ?>" class="<?= ($active_nav ?? '') === 'process_steps' ? 'active' : '' ?>"><i class="fa-solid fa-list-ol"></i> <span class="nav-label">Process Steps</span></a></li>
+            <li><a href="<?= base_url('testimonials') ?>" class="<?= ($active_nav ?? '') === 'testimonials' ? 'active' : '' ?>"><i class="fa-solid fa-quote-left"></i> <span class="nav-label">Testimonials</span></a></li>
+            <li><a href="<?= base_url('spotlight-slides') ?>" class="<?= ($active_nav ?? '') === 'spotlight_slides' ? 'active' : '' ?>"><i class="fa-solid fa-star"></i> <span class="nav-label">Spotlight Slides</span></a></li>
+            <li><a href="<?= base_url('page-heroes') ?>" class="<?= ($active_nav ?? '') === 'page_heroes' ? 'active' : '' ?>"><i class="fa-solid fa-image"></i> <span class="nav-label">Page Heroes</span></a></li>
+            <li><a href="<?= base_url('org-chart') ?>" class="<?= ($active_nav ?? '') === 'org_chart' ? 'active' : '' ?>"><i class="fa-solid fa-sitemap"></i> <span class="nav-label">Org Chart</span></a></li>
 
             <li class="nav-section-label">Inbox &amp; Settings</li>
-            <li><a href="<?= base_url('messages') ?>" class="<?= ($active_nav ?? '') === 'contact_messages' ? 'active' : '' ?>"><i class="fa-solid fa-inbox"></i> Messages</a></li>
-            <li><a href="<?= base_url('site-settings') ?>" class="<?= ($active_nav ?? '') === 'site_settings' ? 'active' : '' ?>"><i class="fa-solid fa-gear"></i> Site Settings</a></li>
-            <!-- here -->
+            <li><a href="<?= base_url('messages') ?>" class="<?= ($active_nav ?? '') === 'contact_messages' ? 'active' : '' ?>"><i class="fa-solid fa-inbox"></i> <span class="nav-label">Messages</span></a></li>
+            <li><a href="<?= base_url('profile') ?>" class="<?= ($active_nav ?? '') === 'profile' ? 'active' : '' ?>"><i class="fa-solid fa-user"></i> <span class="nav-label">Profile</span></a></li>
+            <li><a href="<?= base_url('site-settings') ?>" class="<?= ($active_nav ?? '') === 'site_settings' ? 'active' : '' ?>"><i class="fa-solid fa-gear"></i> <span class="nav-label">Site Settings</span></a></li>
         </ul>
         <div class="sidebar-foot">Gedem Trading PLC Admin</div>
     </aside>
@@ -60,7 +65,8 @@
                     <div><?= html_escape($admin->name ?? '') ?></div>
                     <div class="role"><?= html_escape($admin->role ?? '') ?></div>
                 </div>
-                <div class="avatar"><?= strtoupper(substr($admin->name ?? '?', 0, 1)) ?></div>
+                
+                <a href="<?= base_url('profile') ?>" class=""><div class="avatar"><?= strtoupper(substr($admin->name ?? '?', 0, 1)) ?></div></a>
                 <a href="<?= base_url('logout') ?>" class="logout-btn">Log Out</a>
             </div>
         </div>
@@ -95,6 +101,7 @@
             const sidebar = document.getElementById('adminSidebar');
             const overlay = document.getElementById('sidebarOverlay');
             const toggleBtn = document.getElementById('sidebarToggle');
+            const collapseBtn = document.getElementById('sidebarCollapse');
 
             function openSidebar() {
                 sidebar.classList.add('open');
@@ -106,24 +113,47 @@
                 overlay.classList.remove('visible');
             }
 
+            function syncCollapseButton() {
+                if (!collapseBtn) return;
+                const collapsed = sidebar.classList.contains('collapsed');
+                const icon = collapsed ? 'fa-chevron-right' : 'fa-chevron-left';
+                collapseBtn.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+                collapseBtn.innerHTML = '<i class="fa-solid ' + icon + '"></i>';
+            }
+
             toggleBtn.addEventListener('click', () => {
                 sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
             });
 
+            collapseBtn.addEventListener('click', () => {
+                if (window.innerWidth <= 900) return;
+                const collapsed = sidebar.classList.toggle('collapsed');
+                document.body.classList.toggle('sidebar-collapsed', collapsed);
+                syncCollapseButton();
+            });
+
             overlay.addEventListener('click', closeSidebar);
 
-            // Close automatically after tapping a nav link, so the menu
-            // doesn't stay open over the page you just navigated to.
             sidebar.querySelectorAll('.admin-nav a').forEach(link => {
-                link.addEventListener('click', closeSidebar);
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 900) closeSidebar();
+                });
             });
 
-            // If the viewport is resized past the mobile breakpoint while
-            // the menu is open (e.g. rotating a tablet), reset state so
-            // it doesn't get stuck mid-transition.
             window.addEventListener('resize', () => {
-                if (window.innerWidth > 900) closeSidebar();
+                if (window.innerWidth > 900) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('visible');
+                    document.body.classList.toggle('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+                    syncCollapseButton();
+                } else {
+                    sidebar.classList.remove('collapsed');
+                    document.body.classList.remove('sidebar-collapsed');
+                    syncCollapseButton();
+                }
             });
+
+            syncCollapseButton();
         })();
     </script>
 </body>

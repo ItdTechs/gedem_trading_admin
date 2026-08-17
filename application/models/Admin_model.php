@@ -56,4 +56,42 @@ class Admin_model extends CI_Model
             'is_active'     => 1,
         ]);
     }
+
+    public function email_exists($email, $exclude_id = null)
+    {
+        $this->db->where('email', strtolower(trim($email)));
+
+        if ($exclude_id !== null) {
+            $this->db->where('id !=', (int) $exclude_id);
+        }
+
+        return $this->db->get($this->table)->num_rows() > 0;
+    }
+
+    public function update_profile($id, $name, $email)
+    {
+        if ($this->email_exists($email, $id)) {
+            return false;
+        }
+
+        return $this->db->where('id', (int) $id)
+                        ->update($this->table, [
+                            'name' => trim($name),
+                            'email' => strtolower(trim($email)),
+                        ]);
+    }
+
+    public function update_password($id, $current_password, $new_password)
+    {
+        $admin = $this->get_by_id((int) $id);
+
+        if (!$admin || !password_verify($current_password, $admin->password_hash)) {
+            return false;
+        }
+
+        return $this->db->where('id', (int) $id)
+                        ->update($this->table, [
+                            'password_hash' => password_hash($new_password, PASSWORD_BCRYPT),
+                        ]);
+    }
 }
