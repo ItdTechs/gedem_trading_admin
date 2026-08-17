@@ -73,6 +73,24 @@ $route['page-heroes/edit/(:any)']  = 'pageheroes/edit/$1';
 // Single form covering every known key — no per-row CRUD at all.
 $route['site-settings']            = 'sitesettings/index';
 
+// ==================== ORG CHART ====================
+// Shareholder/manager are edited as singletons; departments get full CRUD.
+$route['org-chart']                          = 'orgchart/index';
+$route['org-chart/shareholder']              = 'orgchart/edit_shareholder';
+$route['org-chart/manager']                  = 'orgchart/edit_manager';
+$route['org-chart/departments/create']       = 'orgchart/create_department';
+$route['org-chart/departments/edit/(:num)']  = 'orgchart/edit_department/$1';
+$route['org-chart/departments/delete/(:num)'] = 'orgchart/delete_department/$1';
+$route['org-chart/departments/toggle/(:num)'] = 'orgchart/toggle_department/$1';
+
+// ==================== CONTACT MESSAGES ====================
+// Read/status-only inbox — submissions come from the public contact
+// form, not from this admin, so there's no create route.
+$route['messages']                = 'contactmessages/index';
+$route['messages/view/(:num)']    = 'contactmessages/view/$1';
+$route['messages/status/(:num)']  = 'contactmessages/update_status/$1';
+$route['messages/delete/(:num)']  = 'contactmessages/delete/$1';
+
 // Error handling (must be last)
 $route['404_override'] = 'errors';
 $route['translate_uri_dashes'] = FALSE;

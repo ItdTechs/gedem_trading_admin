@@ -11,8 +11,12 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+    <link rel="icon" href="<?= base_url('assets/img/favicon.png')?>">
 </head>
 <body class="admin-body">
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
     <aside class="admin-sidebar" id="adminSidebar">
         <div class="brand">
@@ -30,8 +34,10 @@
             <li><a href="<?= base_url('testimonials') ?>" class="<?= ($active_nav ?? '') === 'testimonials' ? 'active' : '' ?>"><i class="fa-solid fa-quote-left"></i> Testimonials</a></li>
             <li><a href="<?= base_url('spotlight-slides') ?>" class="<?= ($active_nav ?? '') === 'spotlight_slides' ? 'active' : '' ?>"><i class="fa-solid fa-star"></i> Spotlight Slides</a></li>
             <li><a href="<?= base_url('page-heroes') ?>" class="<?= ($active_nav ?? '') === 'page_heroes' ? 'active' : '' ?>"><i class="fa-solid fa-image"></i> Page Heroes</a></li>
+            <li><a href="<?= base_url('org-chart') ?>" class="<?= ($active_nav ?? '') === 'org_chart' ? 'active' : '' ?>"><i class="fa-solid fa-sitemap"></i> Org Chart</a></li>
 
             <li class="nav-section-label">Inbox &amp; Settings</li>
+            <li><a href="<?= base_url('messages') ?>" class="<?= ($active_nav ?? '') === 'contact_messages' ? 'active' : '' ?>"><i class="fa-solid fa-inbox"></i> Messages</a></li>
             <li><a href="<?= base_url('site-settings') ?>" class="<?= ($active_nav ?? '') === 'site_settings' ? 'active' : '' ?>"><i class="fa-solid fa-gear"></i> Site Settings</a></li>
             <!-- here -->
         </ul>
@@ -40,9 +46,14 @@
 
     <div class="admin-main">
         <div class="admin-topbar">
-            <div>
-                <h1><?= isset($page_title) ? html_escape($page_title) : 'Dashboard' ?></h1>
-                <?php if (!empty($breadcrumb)): ?><div class="breadcrumb"><?= html_escape($breadcrumb) ?></div><?php endif; ?>
+            <div style="display:flex; align-items:center;">
+                <button type="button" class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div>
+                    <h1><?= isset($page_title) ? html_escape($page_title) : 'Dashboard' ?></h1>
+                    <?php if (!empty($breadcrumb)): ?><div class="breadcrumb"><?= html_escape($breadcrumb) ?></div><?php endif; ?>
+                </div>
             </div>
             <div class="admin-user-menu">
                 <div class="who">
@@ -77,6 +88,43 @@
             const dismiss = event.target.closest('.dismiss-btn');
             if (dismiss) dismiss.closest('.form-message')?.remove();
         });
+    </script>
+
+    <script>
+        (function () {
+            const sidebar = document.getElementById('adminSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const toggleBtn = document.getElementById('sidebarToggle');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('visible');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('visible');
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+            });
+
+            overlay.addEventListener('click', closeSidebar);
+
+            // Close automatically after tapping a nav link, so the menu
+            // doesn't stay open over the page you just navigated to.
+            sidebar.querySelectorAll('.admin-nav a').forEach(link => {
+                link.addEventListener('click', closeSidebar);
+            });
+
+            // If the viewport is resized past the mobile breakpoint while
+            // the menu is open (e.g. rotating a tablet), reset state so
+            // it doesn't get stuck mid-transition.
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 900) closeSidebar();
+            });
+        })();
     </script>
 </body>
 </html>
